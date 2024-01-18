@@ -1,11 +1,11 @@
 import './App.css';
+import Header from './Header';
 
 function App() {
   return (
     <>
-      <h1>I really need this to work</h1>
-      <h2>Im not sure why this is so complicated</h2>
-      <h3>I think its working now!</h3>
+      <Header text="Discover Me" section="Artist Info" />
+      <div className="container"></div>
     </>
   );
 }
