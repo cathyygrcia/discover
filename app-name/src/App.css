@@ -33,8 +33,9 @@ body {
 
 .header-text {
   color: white;
-  margin: 0;
   font-size: 3rem;
+  margin: 0;
+  padding: 1.5rem;
 }
 
 .section {
@@ -46,4 +47,43 @@ body {
   color: white;
   font-size: 3rem;
   text-align: end;
+  margin-left: 0.5rem;
+}
+
+.favorites {
+  display: flex;
+  align-items: center;
+}
+
+.favorites-text {
+  color: white;
+}
+
+@media screen and (width <= 1200px) {
+  .header-text {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .section {
+    font-size: 1.5rem;
+  }
+
+  .heart {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (width <= 600) {
+  .text {
+    display: none;
+  }
+
+  .favorites-text {
+    display: none;
+  }
+
+  .column-third {
+    flex-basis: calc(50%);
+  }
 }
