@@ -93,7 +93,7 @@ body {
 }
 
 .search-text {
-  width: 30%;
+  width: 38%;
   border-radius: 1rem;
   padding: 0.5rem;
   background-color: rgb(11, 11, 11, 0.6);
@@ -111,6 +111,7 @@ body {
   margin-left: 1.5rem;
   border-radius: 1rem;
   padding: 0.5rem;
+  width: 20%;
 }
 
 .hidden {
@@ -129,6 +130,14 @@ body {
 
   .heart {
     font-size: 1.7rem;
+  }
+
+  .search-buttons {
+    width: 30%;
+  }
+
+  .search-text {
+    width: 50%;
   }
 }
 

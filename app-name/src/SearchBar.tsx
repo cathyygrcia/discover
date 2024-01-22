@@ -1,7 +1,7 @@
 export default function SearchBar() {
   return (
     <>
-      <label className="search-bar">
+      <label className="search-bar hidden">
         <input type="text" className="search-text" placeholder="Search..." />
       </label>
       <div className="search-buttons-row">
