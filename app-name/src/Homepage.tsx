@@ -39,7 +39,8 @@ export default function Homepage() {
               />
             </div>
             <p className="artist-name">{artist.name}</p>
-            <p className="artist_name">{artist.venue}</p>
+            <p className="artist-name">{artist._embedded.venues[0].name}</p>
+            <p className="artist-name">{artist.dates.start.localDate}</p>
           </div>
         ))}
       </div>
