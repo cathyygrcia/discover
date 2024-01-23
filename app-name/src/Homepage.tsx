@@ -24,6 +24,16 @@ export default function Homepage() {
     getRandom();
   }, []);
 
+  function formatDate(inputDate: string) {
+    const parts = inputDate.split('-');
+    const year = parts[0];
+    const month = parts[1];
+    const day = parts[2];
+    return `${month}/${day}/${year}`;
+  }
+
+  console.log(formatDate('2025-25-01'));
+
   return (
     <>
       <Header text="Discover Me" section="" />
@@ -40,7 +50,9 @@ export default function Homepage() {
             </div>
             <p className="artist-name">{artist.name}</p>
             <p className="artist-name">{artist._embedded.venues[0].name}</p>
-            <p className="artist-name">{artist.dates.start.localDate}</p>
+            <p className="artist-name">
+              {formatDate(artist.dates.start.localDate)}
+            </p>
           </div>
         ))}
       </div>
