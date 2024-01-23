@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import Header from './Header';
 import SearchBar from './SearchBar';
+import { ArtistProps } from './types';
 
 export default function Homepage() {
-  const [artist, setArtists] = useState();
+  const [artists, setArtists] = useState<ArtistProps[]>([]);
+  const [images, setImages] = useState<ArtistProps[]>([]);
 
-  console.log(artist);
+  console.log(artists);
+  console.log(images);
+
   useEffect(() => {
     async function getRandom() {
       try {
@@ -14,9 +18,10 @@ export default function Homepage() {
         );
         if (!res.ok) throw new Error(`Error: ${res.status}`);
         const result = await res.json();
-        setArtists(result);
+        setArtists(result._embedded.events);
+        setImages(result._embedded.events.images[0].url);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     getRandom();
@@ -27,45 +32,17 @@ export default function Homepage() {
       <Header text="Discover Me" section="" />
       <SearchBar />
       <div className="row">
-        <div className="artist-info">
-          <div className="image-wrapper">
-            <img src="/images/hirie.jpg" alt="hirie" className="img" />
+        {artists.map((artist) => (
+          <div key={artist.id} className="artist-info">
+            <div className="image-wrapper">
+              {images.map((images) => (
+                <img src={images.images} alt={artist.name} className="img" />
+              ))}
+            </div>
+            <p className="artist-name">{artist.name}</p>
+            <p className="artist_name">{artist.venue}</p>
           </div>
-          <p className="artist-name">Hirie</p>
-          <p className="artist-name">The Roxy</p>
-        </div>
-        <div className="artist-info">
-          <div className="image-wrapper">
-            <img src="/images/hirie.jpg" alt="hirie" className="img" />
-          </div>
-          <p className="artist-name">Hirie</p>
-        </div>
-        <div className="artist-info">
-          <div className="image-wrapper">
-            <img src="/images/hirie.jpg" alt="hirie" className="img" />
-          </div>
-          <p className="artist-name">Hirie</p>
-        </div>
-      </div>
-      <div className="row">
-        <div className="artist-info">
-          <div className="image-wrapper">
-            <img src="/images/hirie.jpg" alt="hirie" className="img" />
-          </div>
-          <p className="artist-name">Hirie</p>
-        </div>
-        <div className="artist-info">
-          <div className="image-wrapper">
-            <img src="/images/hirie.jpg" alt="hirie" className="img" />
-          </div>
-          <p className="artist-name">Hirie</p>
-        </div>
-        <div className="artist-info">
-          <div className="image-wrapper">
-            <img src="/images/hirie.jpg" alt="hirie" className="img" />
-          </div>
-          <p className="artist-name">Hirie</p>
-        </div>
+        ))}
       </div>
     </>
   );

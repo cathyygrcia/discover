@@ -124,6 +124,7 @@ body {
 .row {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .image-wrapper {
