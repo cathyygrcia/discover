@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from './Header';
 import SearchBar from './SearchBar';
 import { ArtistProps } from './types';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function Homepage() {
   const [artists, setArtists] = useState<ArtistProps[]>([]);
@@ -42,12 +43,15 @@ export default function Homepage() {
         {artists.map((artist) => (
           <div key={artist.id} className="artist-info">
             <div className="image-wrapper">
-              <img
-                src={artist.images[0].url}
-                alt={artist.name}
-                className="img"
-              />
+              <Link to="Artist">
+                <img
+                  src={artist.images[0].url}
+                  alt={artist.name}
+                  className="img"
+                />
+              </Link>
             </div>
+
             <p className="artist-name">{artist.name}</p>
             <p className="artist-name">{artist._embedded.venues[0].name}</p>
             <p className="artist-name">
@@ -56,6 +60,7 @@ export default function Homepage() {
           </div>
         ))}
       </div>
+      <Outlet />
     </>
   );
 }
