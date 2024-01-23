@@ -5,10 +5,8 @@ import { ArtistProps } from './types';
 
 export default function Homepage() {
   const [artists, setArtists] = useState<ArtistProps[]>([]);
-  const [images, setImages] = useState<ArtistProps[]>([]);
 
   console.log(artists);
-  console.log(images);
 
   useEffect(() => {
     async function getRandom() {
@@ -19,13 +17,22 @@ export default function Homepage() {
         if (!res.ok) throw new Error(`Error: ${res.status}`);
         const result = await res.json();
         setArtists(result._embedded.events);
-        setImages(result._embedded.events.images[0].url);
       } catch (error) {
         console.error(error);
       }
     }
     getRandom();
   }, []);
+
+  function formatDate(inputDate: string) {
+    const parts = inputDate.split('-');
+    const year = parts[0];
+    const month = parts[1];
+    const day = parts[2];
+    return `${month}/${day}/${year}`;
+  }
+
+  console.log(formatDate('2025-25-01'));
 
   return (
     <>
@@ -35,12 +42,17 @@ export default function Homepage() {
         {artists.map((artist) => (
           <div key={artist.id} className="artist-info">
             <div className="image-wrapper">
-              {images.map((images) => (
-                <img src={images.images} alt={artist.name} className="img" />
-              ))}
+              <img
+                src={artist.images[0].url}
+                alt={artist.name}
+                className="img"
+              />
             </div>
             <p className="artist-name">{artist.name}</p>
-            <p className="artist_name">{artist.venue}</p>
+            <p className="artist-name">{artist._embedded.venues[0].name}</p>
+            <p className="artist-name">
+              {formatDate(artist.dates.start.localDate)}
+            </p>
           </div>
         ))}
       </div>
