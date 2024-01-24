@@ -1,7 +1,9 @@
+import Header from './Header';
+
 export function ArtistInfo() {
   return (
     <>
-      <p className="white">This is my artist info page./</p>
+      <Header text="Discover Me" section="Artist Info" />
     </>
   );
 }
