@@ -9,11 +9,32 @@ export default function Homepage() {
 
   console.log(artists);
 
+  const dmaArray = [
+    '324',
+    '222',
+    '228',
+    '300',
+    '264',
+    '345',
+    '354',
+    '368',
+    '372',
+    '378',
+    '380',
+    '381',
+    '382',
+    '383',
+    '385',
+  ];
+
+  const randomIndex = Math.floor(Math.random() * dmaArray.length);
+  const randomDMA = dmaArray[randomIndex];
+
   useEffect(() => {
-    async function getRandom() {
+    async function getRandom(DMA: string) {
       try {
         const res = await fetch(
-          'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&genreId=&apikey=aeMvG0zyzdpO1jAkGyCZeGxxQK4vIfpe',
+          `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=${DMA}&size=30&apikey=aeMvG0zyzdpO1jAkGyCZeGxxQK4vIfpe`,
         );
         if (!res.ok) throw new Error(`Error: ${res.status}`);
         const result = await res.json();
@@ -22,7 +43,7 @@ export default function Homepage() {
         console.error(error);
       }
     }
-    getRandom();
+    getRandom(randomDMA);
   }, []);
 
   function formatDate(inputDate: string) {
@@ -32,8 +53,6 @@ export default function Homepage() {
     const day = parts[2];
     return `${month}/${day}/${year}`;
   }
-
-  console.log(formatDate('2025-25-01'));
 
   return (
     <>
