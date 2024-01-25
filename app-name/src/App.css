@@ -7,6 +7,10 @@ body {
   font-family: 'Reggae One', system-ui;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   min-height: 100vh;
   background-image: url('/images/crowd.jpg');

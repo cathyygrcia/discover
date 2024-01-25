@@ -1,5 +1,6 @@
 import { FaRegHeart } from 'react-icons/fa';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 type Props = {
   text: string;
@@ -11,7 +12,9 @@ export default function Header({ text, section }: Props) {
     <>
       <div className="header">
         <div className="column-third text">
-          <p className="header-text">{text}</p>
+          <Link to="/">
+            <p className="header-text">{text}</p>
+          </Link>
           <FaMagnifyingGlass className="glass" />
         </div>
         <div className="column-third">
